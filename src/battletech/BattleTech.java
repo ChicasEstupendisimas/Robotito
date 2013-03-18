@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * @author Ana Ferreira Blanco y Mar’a Jesœs Platero S‡nchez
