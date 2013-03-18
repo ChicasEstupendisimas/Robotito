@@ -1,6 +1,6 @@
 package battletech;
 /**
- * Ana Ferreira Blanco y Mar’a Jesœs Platero S‡nchez
+ * @author Ana Ferreira Blanco y Mar’a Jesœs Platero S‡nchez
  * Robotito de la muerte versi—n: Vamos a aprobar
  * Clase principal desde la que se hace de t—.
  * 
