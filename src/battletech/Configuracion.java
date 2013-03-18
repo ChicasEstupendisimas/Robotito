@@ -1,9 +1,25 @@
 package battletech;
 
-/**
- * Aqu’ leeemos la configuraci—n inicial de la partida
- * @author mary
+/*!
+ * Lectura y almacenaje de la configuraci—n de la partida.
  */
 public class Configuracion {
 
+	/*!
+	 * Constructor por defecto
+	 */
+	Configuracion(){
+		
+	}
+	
+	/*!
+	 * Lectura del archivo de configuraci—n
+	 */
+	void LeerConfiguracion(){
+		
+		
+		
+	}
+	
+	
 }
