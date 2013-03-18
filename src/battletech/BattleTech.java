@@ -16,6 +16,16 @@ public class BattleTech {
 		// TODO Auto-generated method stub
 
 		
+		//Se reciben dos argumentos: nœmero de jugador asginado y fase de acciones
+		if(args.length!=2){
+			
+			
+		}
+		
+		
+		
+		
+		
 		
 		
 	}
