@@ -19,12 +19,13 @@ public class BattleTech {
 	//Objetos del programa
 	private static Configuracion config = new Configuracion();
 	private static Mech mech = new Mech();
+	private static ArrayList<Mech> enemigos = new ArrayList<Mech>();
 
 	
 	//Variables
-	private static int jugador;
-	private static String fase;
-	private static ArrayList<String> resultado_lectura;
+	private static int Jugador;
+	private static int NumMechs;
+	private static String Fase;
 	
 	//ESTO ES PARA CUANDO EMPECEMOS A PONERNOS CON LAS FASES
 	String fase_Ana = "Movimiento"; 
@@ -47,19 +48,10 @@ public class BattleTech {
 		 *			fase = args[1];
 		 *			System.out.print("Argumentos insertados: " + jugador + fase);
 		 */		
-			jugador = 1;
+			Jugador = 1;
 			
-			//De esto se encarga Mary
-			resultado_lectura = LecturaArchivo("config");
-			config.LeerConfiguracion(resultado_lectura);
-		
-			//De esto se encarga Ana
-			//resultado_lectura = LecturaArchivo("mechs");
-			//mech.LeerMech();
+			LeerFicheros();
 			
-			//De esto ya veremos quien se encarga
-			//resultado_lectura = LecturaArchivo("mapa");
-			//mapa.LeerMapa();
 			
 			//TODO: entrar a las fases y todo eso
 			
@@ -67,7 +59,31 @@ public class BattleTech {
 	
 	}
 	
+	private static void LeerFicheros(){
+		
+		ArrayList<String> lectura_config;
+		ArrayList<String> lectura_mapa;
+		ArrayList<String> lectura_mechs;
+		
+		//FUNCIONA
+		lectura_config = LecturaArchivo("config");
+		config.LeerConfiguracion(lectura_config);
 	
+		//De esto ya veremos quien se encarga
+		//resultado_lectura = LecturaArchivo("mapa");
+		//mapa.LeerMapa();
+		
+		lectura_mechs = LecturaArchivo("mechs");
+		NumMechs = Integer.parseInt(lectura_mechs.get(1));
+		lectura_mechs.remove(0);
+		lectura_mechs.remove(0);
+	
+		System.out.print("\nJUGADOR ACTIVO: "+ Jugador);
+		for(int i=0; i<NumMechs; i++){
+			mech.LeerMech(lectura_mechs, Jugador, NumMechs);
+		}
+		
+	}
 	
 	/*!
 	 * Funci—n para leer los archivos de informaci—n de la partida
@@ -84,7 +100,7 @@ public class BattleTech {
 	      try {
 	         // Apertura del fichero y creacion de BufferedReader para poder
 	         // hacer una lectura comoda (disponer del metodo readLine()).
-	         archivo = new File ("./InputFiles/"+tipo_archivo+"J"+jugador+".sbt");
+	         archivo = new File ("./InputFiles/"+tipo_archivo+"J"+Jugador+".sbt");
 	         fr = new FileReader (archivo);
 	         br = new BufferedReader(fr);
 
@@ -109,8 +125,8 @@ public class BattleTech {
 	         }
 	      }
 
-	    resultado_lectura = ArrayLectura;
-		return resultado_lectura;
+	   
+		return ArrayLectura;
 	}
 
 }
