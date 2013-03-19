@@ -70,11 +70,12 @@ public class BattleTech {
 		lectura_config = LecturaArchivo("config");
 		config.LeerConfiguracion(lectura_config);
 	
-		//De esto ya veremos quien se encarga
+		//Faltan Comprobaciones
 		lectura_mapa = LecturaArchivo("mapa");
 		mapa.LeerMapa(lectura_mapa);
 		
-	/*	lectura_mechs = LecturaArchivo("mechs");
+		//Faltan Comprobaciones
+		lectura_mechs = LecturaArchivo("mechs");
 		NumMechs = Integer.parseInt(lectura_mechs.get(1));
 		lectura_mechs.remove(0);
 		lectura_mechs.remove(0);
@@ -88,7 +89,7 @@ public class BattleTech {
 			}else{
 				enemigos.add(temp);
 			}
-		}*/
+		}
 		
 	}
 	
