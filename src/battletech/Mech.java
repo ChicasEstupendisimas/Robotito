@@ -41,7 +41,7 @@ public class Mech {
 
 	Mech(){}
 	
-	Mech LeerMech(ArrayList<String> Leido, int Activo, int NumJugadores ){
+	static Mech LeerMech(ArrayList<String> Leido, int Activo, int NumJugadores ){
 		
 		Mech relleno = new Mech();
 
@@ -107,7 +107,7 @@ public class Mech {
 	}
 	
 	
-	void LeerMechActivo(ArrayList<String> Leido, Mech relleno){
+	static void LeerMechActivo(ArrayList<String> Leido, Mech relleno){
 		
 		int elementos=0;
 		
@@ -128,8 +128,8 @@ public class Mech {
 		
 		relleno.NumMuniciones = Integer.parseInt(Leido.get(93));
 		for(int i=0; i<relleno.NumMuniciones; i++){
-			LocMuniciones.add(Leido.get(93+i));
-			LocMuniciones.add(Leido.get(94+i));
+			relleno.LocMuniciones.add(Leido.get(93+i));
+			relleno.LocMuniciones.add(Leido.get(94+i));
 			elementos = elementos+2;
 		}
 		

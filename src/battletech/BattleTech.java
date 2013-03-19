@@ -20,6 +20,7 @@ public class BattleTech {
 	private static Configuracion config = new Configuracion();
 	private static Mech mech = new Mech();
 	private static ArrayList<Mech> enemigos = new ArrayList<Mech>();
+	private static Tablero mapa = new Tablero();
 
 	
 	//Variables
@@ -70,18 +71,24 @@ public class BattleTech {
 		config.LeerConfiguracion(lectura_config);
 	
 		//De esto ya veremos quien se encarga
-		//resultado_lectura = LecturaArchivo("mapa");
-		//mapa.LeerMapa();
+		lectura_mapa = LecturaArchivo("mapa");
+		mapa.LeerMapa(lectura_mapa);
 		
-		lectura_mechs = LecturaArchivo("mechs");
+	/*	lectura_mechs = LecturaArchivo("mechs");
 		NumMechs = Integer.parseInt(lectura_mechs.get(1));
 		lectura_mechs.remove(0);
 		lectura_mechs.remove(0);
 	
 		System.out.print("\nJUGADOR ACTIVO: "+ Jugador);
 		for(int i=0; i<NumMechs; i++){
-			mech.LeerMech(lectura_mechs, Jugador, NumMechs);
-		}
+			Mech temp = Mech.LeerMech(lectura_mechs, Jugador, NumMechs);;
+
+			if(temp.NumJugador == Jugador){
+				mech = temp;
+			}else{
+				enemigos.add(temp);
+			}
+		}*/
 		
 	}
 	
