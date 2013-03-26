@@ -70,7 +70,7 @@ public class BattleTech {
 		lectura_config = LecturaArchivo("config");
 		config.LeerConfiguracion(lectura_config);
 	
-		//Faltan Comprobaciones
+		//Faltan Comprobaciones-----
 		lectura_mapa = LecturaArchivo("mapa");
 		mapa.LeerMapa(lectura_mapa);
 		
