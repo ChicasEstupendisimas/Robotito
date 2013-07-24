@@ -15,7 +15,7 @@ public class Configuracion {
 	boolean DevastarBosques;
 	boolean DerrumbarEdificios;
 	boolean ChequeoPilotaje;
-	boolean ChequeoDa–o;
+	boolean ChequeoDato;
 	boolean ChequeoDesconexion;
 	boolean ImpactoCritico;
 	boolean ExplosionMunicion;
@@ -42,7 +42,7 @@ public class Configuracion {
 		DevastarBosques = Boolean.parseBoolean(leido.get(6));
 		DerrumbarEdificios= Boolean.parseBoolean(leido.get(7));
 		ChequeoPilotaje = Boolean.parseBoolean(leido.get(8));
-		ChequeoDa–o = Boolean.parseBoolean(leido.get(9));
+		ChequeoDato = Boolean.parseBoolean(leido.get(9));
 		ChequeoDesconexion= Boolean.parseBoolean(leido.get(10));
 		ImpactoCritico = Boolean.parseBoolean(leido.get(11));
 		ExplosionMunicion = Boolean.parseBoolean(leido.get(12));
