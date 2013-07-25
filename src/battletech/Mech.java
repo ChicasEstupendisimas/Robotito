@@ -21,8 +21,10 @@ public class Mech {
 	int[] Blindaje = new int[11];
 	int [] EstructuraInterna = new int[8];
 	
-	boolean Narc;
-	boolean iNarc;
+	boolean[] Narc;
+	boolean[] iNarc;
+	
+
 	
 	
 	//Atributos s—lo para el jugador activo
@@ -46,7 +48,7 @@ public class Mech {
 	static Mech LeerMech(ArrayList<String> Leido, int Activo, int NumJugadores ){
 		
 		Mech relleno = new Mech();
-
+		System.out.print("\n\n Inicio mech  \n\n");
 		relleno.NumJugador = Integer.parseInt(Leido.get(0));
 		relleno.Operativo = Boolean.parseBoolean(Leido.get(1));
 		relleno.Desconectado = Boolean.parseBoolean(Leido.get(2));
@@ -64,30 +66,13 @@ public class Mech {
 			relleno.Blindaje[i] = Integer.parseInt(Leido.get(i+12));
 		}
 		for(int i=0; i<8;i++){
-			relleno.EstructuraInterna[i] = Integer.parseInt(Leido.get(i+13));
+			relleno.EstructuraInterna[i] = Integer.parseInt(Leido.get(i+23));
 		} 
 		
 		for(int i=0; i<31; i++){
 			Leido.remove(0);
 		}
 
-		
-		if(relleno.NumJugador == Activo){
-			LeerMechActivo(Leido, relleno);	
-		}
-		
-		for(int i=0; i<NumJugadores*2; i++){
-			if(i==relleno.NumJugador){
-				relleno.Narc = Boolean.parseBoolean(Leido.get(i)); 
-			}
-			if(i== relleno.NumJugador+NumJugadores){
-				relleno.iNarc = Boolean.parseBoolean(Leido.get(i));
-			}		
-		}
-		
-		for(int i=0; i<NumJugadores*2; i++){
-			Leido.remove(0);
-		}
 		
 		System.out.print("\n0 " + relleno.NumJugador);
 		System.out.print("\n1 " +relleno.Operativo);
@@ -102,7 +87,7 @@ public class Mech {
 		System.out.print("\n10 " +relleno.Garrote);
 		System.out.print("\n11 " +relleno.TipoGarrote);
 		
-		for(int i=0; i<8; i++){
+		for(int i=0; i<11; i++){
 			System.out.print("\n0 " + relleno.Blindaje[i]);
 		}
 		
@@ -110,10 +95,35 @@ public class Mech {
 			System.out.print("\n0 " + relleno.EstructuraInterna[i]);
 		}
 		
-		System.out.print("\n0 " + relleno.NumJugador);
+		if(relleno.NumJugador == Activo){
+			LeerMechActivo(Leido, relleno);	
+		}
 		
-		System.out.print("\nNarc " +relleno.Narc);
-		System.out.print("\niNarc " +relleno.iNarc);
+		relleno.Narc = new boolean[NumJugadores];
+		relleno.iNarc = new boolean[NumJugadores];
+		
+		for(int i=0; i<NumJugadores*2; i++){
+			
+			if(i<NumJugadores){
+				relleno.Narc[i] = Boolean.parseBoolean(Leido.get(i)); 
+			}else{
+				relleno.iNarc[i-NumJugadores] = Boolean.parseBoolean(Leido.get(i));
+			}		
+		}
+		
+		for(int i=0; i<NumJugadores*2; i++){
+			Leido.remove(0);
+		}
+		
+
+		for(int i=0; i<NumJugadores; i++){
+			System.out.print("\nNarc " +relleno.Narc[i]);
+			System.out.print("\niNarc " +relleno.iNarc[i]);
+		
+		}
+	
+		
+
 		
 		return relleno;
 	}
