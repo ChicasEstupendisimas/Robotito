@@ -10,8 +10,12 @@ public class Tablero {
 	
 	
 	void LeerMapa(ArrayList<String> Leido){
+		
 		Alto  = Integer.parseInt(Leido.get(1));
 		Ancho = Integer.parseInt(Leido.get(2));
+		
+		System.out.print("\nALTO: " + Alto);
+		System.out.print("\nANCHO: " + Ancho);
 		
 		for(int i=0; i<3; i++){
 			Leido.remove(0);
