@@ -62,6 +62,7 @@ public class BattleTech {
 	
 	private static void LeerFicheros(){
 		
+		
 		ArrayList<String> lectura_config;
 		ArrayList<String> lectura_mapa;
 		ArrayList<String> lectura_mechs;
