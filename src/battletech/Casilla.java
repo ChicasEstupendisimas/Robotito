@@ -29,7 +29,7 @@ public class Casilla extends Tablero {
 		temp.Humo = Boolean.parseBoolean(Leido.get(6));
 		temp.NumGarrotes = Integer.parseInt(Leido.get(7));;
 		
-		System.out.print("\nCASILLA\n");
+		System.out.print("\nCASILLAAA\n");
 		System.out.print("\nNivel: " + temp.Nivel);
 		System.out.print("\nTipoTerreno: " + temp.TipoTerreno);
 		System.out.print("\nObjeto: " + temp.Objeto);
