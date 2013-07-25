@@ -36,7 +36,9 @@ public class Mech {
 	boolean[] Slots = new boolean[78];
 	boolean []LocDisparos = new boolean[8];
 	int NumMuniciones;
-	ArrayList<String> LocMuniciones = new ArrayList<String>();
+	ArrayList<Municion> Municiones = new ArrayList<Municion>();
+	
+	
 	
 
 	Mech(){}
@@ -63,7 +65,6 @@ public class Mech {
 		}
 		for(int i=0; i<8;i++){
 			relleno.EstructuraInterna[i] = Integer.parseInt(Leido.get(i+13));
-			
 		} 
 		
 		for(int i=0; i<31; i++){
@@ -100,6 +101,17 @@ public class Mech {
 		System.out.print("\n9 " +relleno.Ardiendo);
 		System.out.print("\n10 " +relleno.Garrote);
 		System.out.print("\n11 " +relleno.TipoGarrote);
+		
+		for(int i=0; i<8; i++){
+			System.out.print("\n0 " + relleno.Blindaje[i]);
+		}
+		
+		for(int i=0; i<8; i++){
+			System.out.print("\n0 " + relleno.EstructuraInterna[i]);
+		}
+		
+		System.out.print("\n0 " + relleno.NumJugador);
+		
 		System.out.print("\nNarc " +relleno.Narc);
 		System.out.print("\niNarc " +relleno.iNarc);
 		
@@ -127,9 +139,12 @@ public class Mech {
 		}
 		
 		relleno.NumMuniciones = Integer.parseInt(Leido.get(93));
+		Municion tempmun = new Municion();
 		for(int i=0; i<relleno.NumMuniciones; i++){
-			relleno.LocMuniciones.add(Leido.get(93+i));
-			relleno.LocMuniciones.add(Leido.get(94+i));
+			
+			tempmun.LocMunicion=Leido.get(93+i);
+			tempmun.SlotMunicion= Integer.parseInt(Leido.get(94+i));
+			relleno.Municiones.add(tempmun);
 			elementos = elementos+2;
 		}
 		
@@ -138,13 +153,27 @@ public class Mech {
 			Leido.remove(0);
 		}
 		
-	}
-/*
-	Mech LeerMech(ArrayList<String> leido){
+		System.out.print("\n0 " + relleno.PAndar);
+		System.out.print("\n0 " + relleno.PCorrer);
+		System.out.print("\n0 " + relleno.PSaltar);
+		System.out.print("\n0 " + relleno.RadiadoresOn);
+		System.out.print("\n0 " + relleno.RadiadoresOff);
+		System.out.print("\n0 " + relleno.Heridas);
+		System.out.print("\n0 " + relleno.Consciente);
 		
+		for(int i=0; i<78; i++){
+			System.out.print("\n0 " + relleno.Slots[i]);
+		}
 		
+		for(int i=0; i<8; i++){
+			System.out.print("\n0 " + relleno.LocDisparos[i]);
+		}
+		System.out.print("\n0 " + relleno.NumMuniciones);
+		
+		for(Municion d :relleno.Municiones)
+			System.out.print("\n0 " + d);
 	}
-*/
+
 
 }
 
