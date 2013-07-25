@@ -71,11 +71,11 @@ public class BattleTech {
 		lectura_config = LecturaArchivo("config");
 		config.LeerConfiguracion(lectura_config);
 	
-		//Faltan Comprobaciones-----
+		//Se supone que funciona (Ask Plary)
 		lectura_mapa = LecturaArchivo("mapa");
 		mapa.LeerMapa(lectura_mapa);
 		
-		//Faltan Comprobaciones
+		// Comprobaciones Made In Brownie
 		lectura_mechs = LecturaArchivo("mechs");
 		NumMechs = Integer.parseInt(lectura_mechs.get(1));
 		lectura_mechs.remove(0);
