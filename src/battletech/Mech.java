@@ -48,7 +48,7 @@ public class Mech {
 	static Mech LeerMech(ArrayList<String> Leido, int Activo, int NumJugadores ){
 		
 		Mech relleno = new Mech();
-		System.out.print("\n\n Inicio mech  \n\n");
+		//System.out.print("\n\n Inicio mech  \n\n");
 		relleno.NumJugador = Integer.parseInt(Leido.get(0));
 		relleno.Operativo = Boolean.parseBoolean(Leido.get(1));
 		relleno.Desconectado = Boolean.parseBoolean(Leido.get(2));
@@ -73,7 +73,7 @@ public class Mech {
 			Leido.remove(0);
 		}
 
-		
+		/*
 		System.out.print("\n0 " + relleno.NumJugador);
 		System.out.print("\n1 " +relleno.Operativo);
 		System.out.print("\n2 " +relleno.Desconectado);
@@ -94,6 +94,7 @@ public class Mech {
 		for(int i=0; i<8; i++){
 			System.out.print("\n0 " + relleno.EstructuraInterna[i]);
 		}
+		*/
 		
 		if(relleno.NumJugador == Activo){
 			LeerMechActivo(Leido, relleno);	
@@ -115,12 +116,13 @@ public class Mech {
 			Leido.remove(0);
 		}
 		
-
+		/*
 		for(int i=0; i<NumJugadores; i++){
 			System.out.print("\nNarc " +relleno.Narc[i]);
 			System.out.print("\niNarc " +relleno.iNarc[i]);
 		
 		}
+		*/
 	
 		
 
@@ -163,6 +165,7 @@ public class Mech {
 			Leido.remove(0);
 		}
 		
+		/*
 		System.out.print("\n0 " + relleno.PAndar);
 		System.out.print("\n0 " + relleno.PCorrer);
 		System.out.print("\n0 " + relleno.PSaltar);
@@ -182,8 +185,8 @@ public class Mech {
 		
 		for(Municion d :relleno.Municiones)
 			System.out.print("\n0 " + d);
+		*/
 	}
-
 
 }
 
