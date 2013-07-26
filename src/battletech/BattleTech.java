@@ -173,10 +173,11 @@ public class BattleTech {
 	         bw = new BufferedWriter(fw);
 	         wr = new PrintWriter(bw);
 	         
+	         if(Escritura != null){
 	         for(String str: Escritura) {
 	        	  wr.write(str);
 	        	}
-	        
+	         }
 	      }
 	      catch(Exception e){
 	         e.printStackTrace();
