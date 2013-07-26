@@ -1,8 +1,11 @@
 package battletech;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 /**
@@ -58,16 +61,21 @@ public class BattleTech {
 			LeerFicheros();
 			
 			
+		      ArrayList<String> ArrayEscritura = new ArrayList<String>();
+			
+			
 			//TODO: entrar a las fases y todo eso
 			if(fase_Ana == Fase_Mov || fase_Mary == Fase_Mov){
 				FaseMovimiento movimiento = new FaseMovimiento();
-				movimiento.IniciaFaseMovimiento();	
+				ArrayEscritura = movimiento.IniciaFaseMovimiento();	
 			}
 			if(fase_Ana == Fase_AA || fase_Mary == Fase_AA){
 				FaseAtaqueArmas ataquearmas = new FaseAtaqueArmas();
-				ataquearmas.IniciaFaseAtaqueArmas();	
+				ArrayEscritura = ataquearmas.IniciaFaseAtaqueArmas();	
 			}
 			
+			
+			GenerarFichero(ArrayEscritura);
 		//}
 	
 	}
@@ -150,4 +158,41 @@ public class BattleTech {
 		return ArrayLectura;
 	}
 
+	private static void GenerarFichero( ArrayList<String> Escritura){
+		
+		  File archivo = null;
+	      FileWriter fw = null;
+	      BufferedWriter bw = null;
+	      PrintWriter wr = null;
+
+	      try {
+	         // Apertura del fichero y creacion de BufferedReader para poder
+	         // hacer una lectura comoda (disponer del metodo readLine()).
+	         archivo = new File ("./Output/accionJ"+Jugador+".sbt");
+	         fw = new FileWriter (archivo);
+	         bw = new BufferedWriter(fw);
+	         wr = new PrintWriter(bw);
+	         
+	         for(String str: Escritura) {
+	        	  wr.write(str);
+	        	}
+	        
+	      }
+	      catch(Exception e){
+	         e.printStackTrace();
+	      }finally{
+	         // En el finally cerramos el fichero, para asegurarnos
+	         // que se cierra tanto si todo va bien como si salta 
+	         // una excepcion.
+	         try{                    
+	            if( null != wr ){   
+	               wr.close();    
+	               bw.close();
+	            }                  
+	         }catch (Exception e2){ 
+	            e2.printStackTrace();
+	         }
+	      }
+	      
+	}
 }

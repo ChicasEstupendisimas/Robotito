@@ -1,11 +1,14 @@
 package battletech;
 
+import java.util.ArrayList;
+
 public class FaseMovimiento {
 
 	
 	
 	
-	public void IniciaFaseMovimiento(){
+	public  ArrayList<String> IniciaFaseMovimiento(){
+		return null;
 		
 		
 	}
