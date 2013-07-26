@@ -34,9 +34,8 @@ public class BattleTech {
 	private static String Fase_Fin = "FinalTurno";
 	
 	//ESTO ES PARA CUANDO EMPECEMOS A PONERNOS CON LAS FASES
-	static String fase_Ana = "Movimiento"; 
-	static String fase_Mary = "Configuraci—n";
-	
+	static String fase_Ana = "AtaqueArmas"; 
+	static String fase_Mary = "Movimiento";
 	/**
 	 * @param args
 	 */
@@ -65,7 +64,8 @@ public class BattleTech {
 				movimiento.IniciaFaseMovimiento();	
 			}
 			if(fase_Ana == Fase_AA || fase_Mary == Fase_AA){
-			//	IniciaFaseMovimiento();	
+				FaseAtaqueArmas ataquearmas = new FaseAtaqueArmas();
+				ataquearmas.IniciaFaseAtaqueArmas();	
 			}
 			
 		//}
