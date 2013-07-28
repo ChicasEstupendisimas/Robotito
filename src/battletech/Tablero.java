@@ -27,7 +27,7 @@ public class Tablero {
 				temp.fila = j;
 				temp.colum = i;
 				Casillas.add(temp);
-				System.out.println("\nFila:"+temp.fila+" "+temp.colum);
+			//	System.out.println("\nFila:"+temp.fila+" "+temp.colum);
 			}
 		}		
 	}
