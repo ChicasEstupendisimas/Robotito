@@ -4,6 +4,12 @@ import java.util.ArrayList;
 
 public class Casilla extends Tablero {
 
+	int colum;
+	int fila;
+	//String[] colum = new String[2];
+	//String[] fila = new String[2];
+	int index;
+	
 	int Nivel;
 	int TipoTerreno;
 	int Objeto;
@@ -16,6 +22,8 @@ public class Casilla extends Tablero {
 	boolean[] RioCaras = new boolean[6];
 	boolean[] CarreteraCaras = new boolean[6];
 
+	//Para el c‡lculo de costes en la Fase de Movimiento (A*)
+	int Coste;
 
 	static Casilla LeerCasilla(ArrayList<String> Leido){
 		Casilla temp = new Casilla();
@@ -29,7 +37,7 @@ public class Casilla extends Tablero {
 		temp.Humo = Boolean.parseBoolean(Leido.get(6));
 		temp.NumGarrotes = Integer.parseInt(Leido.get(7));;
 		
-/*		System.out.print("\nCASILLAAA\n");
+/*		System.out.print("\nCASILLA\n");
 		System.out.print("\nNivel: " + temp.Nivel);
 		System.out.print("\nTipoTerreno: " + temp.TipoTerreno);
 		System.out.print("\nObjeto: " + temp.Objeto);

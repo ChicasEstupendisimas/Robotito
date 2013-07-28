@@ -13,19 +13,24 @@ public class Tablero {
 		
 		Alto  = Integer.parseInt(Leido.get(1));
 		Ancho = Integer.parseInt(Leido.get(2));
-		
-	//	System.out.print("\nALTO: " + Alto);
-	//	System.out.print("\nANCHO: " + Ancho);
+			
+		System.out.print("\nALTO: " + Alto);
+		System.out.print("\nANCHO: " + Ancho);
 		
 		for(int i=0; i<3; i++){
 			Leido.remove(0);
 		}
-		for(int i=0; i<Alto*Ancho ; i++){
-		//	System.out.println("\nCASILLAS NUMERO: "+i);
-			Casilla temp = Casilla.LeerCasilla(Leido);
-			Casillas.add(temp);
-		//	System.out.print("\n Casilla : "+i+" leido: "+temp);
-		}
-		
+
+		for(int i=1; i<=Ancho ; i++){
+			for(int j=1; j<=Alto; j++){	
+				Casilla temp = Casilla.LeerCasilla(Leido);
+				temp.fila = j;
+				temp.colum = i;
+				Casillas.add(temp);
+				System.out.println("\nFila:"+temp.fila+" "+temp.colum);
+			}
+		}		
 	}
+	
+	
 }
