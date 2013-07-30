@@ -6,21 +6,29 @@ public class FaseMovimiento {
 	
 	
 
-	static ArrayList<Casilla> Abiertos = new ArrayList<Casilla>();
-	static ArrayList<Casilla> Cerrados = new ArrayList<Casilla>();
-	int[] Costes;
-	int i = 0;
+	static Casilla Destino;
+	static Casilla Inicial;
+	static ArrayList<Casilla> Tablero = new ArrayList<Casilla>();
+	static Mech Enemigo = new Mech();
+	static Mech Yo = new Mech();
+	static int[] Costes;
+//s	int i = 0;
 
 	
-	
-	
-	public  ArrayList<String> IniciaFaseMovimiento(Mech yo, ArrayList<Mech> enemigos){
+	public  ArrayList<String> IniciaFaseMovimiento(Mech Yo, ArrayList<Mech> Enemigos, ArrayList<Casilla> Tablero){
 
-		Costes = new int[enemigos.size()];
-		for(Mech Enemech : enemigos){
-			Costes[i] = CalculaCostes(Enemech);
-			i++;
-		}
+		/* EscogeEnemigo();
+			Fase de pruebas, por ahora escogemos el primer Mech de la lista de enemigos
+				
+		*/
+		
+		this.Tablero = Tablero;
+		this.Yo = Yo;
+		Enemigo = EscogeEnemigo(Enemigos);
+		
+		this.Inicial = Yo.Casilla;
+		this.Destino = Enemigo.Casilla;
+	//	
 		
 		/* Formato de fichero:
 		 * 
@@ -48,6 +56,24 @@ public class FaseMovimiento {
 	}
 	
 	/*
+	 * Funci—n para escoger el mech Enemigo id—neo
+	 */
+	static Mech EscogeEnemigo(ArrayList<Mech> Enemigos){
+		Mech EnemigoMech = new Mech();
+		/*	
+		int i=0;
+		Costes = new int[Enemigos.size()];
+		for(Mech Enemech : Enemigos){
+			Costes[i] = CalculaCostes(Enemech);
+			i++;
+		}
+		*/
+		
+		EnemigoMech = Enemigos.get(0);
+		return EnemigoMech;
+	}
+	
+	/*
 	 * Funci—n para calcular los costes del enemigo actual
 	 */
 	static int CalculaCostes(Mech Enemigo){
@@ -65,59 +91,87 @@ public class FaseMovimiento {
 	 * Funci—n base del algoritmo A*
 	 */
 	static void AlgoritmoA(){
+
+		ArrayList<Casilla> Abiertos = new ArrayList<Casilla>();
+		ArrayList<Casilla> Cerrados = new ArrayList<Casilla>();
+		boolean CaminoEncontrado = false;
+		boolean LimiteTiempo = false;
 		
+		Abiertos.add(Inicial);
 		
-		
-		
-		/*		
-			ABIERTOS := [INICIAL] //inicializacin 
-			CERRADOS := [] 
-			f'(INICIAL) := h'(INICIAL) 
-			repetir 
-			si ABIERTOS = [] entonces FALLO 
-			si no // quedan nodos 
-			extraer MEJORNODO de ABIERTOS con f' mnima 
-			// cola de prioridad 
-			mover MEJORNODO de ABIERTOS a CERRADOS 
-			si MEJORNODO contiene estado_objetivo entonces 
-			SOLUCION_ENCONTRADA := TRUE 
-			si no 
-			generar SUCESORES de MEJORNODO 
-			para cada SUCESOR hacer TRATAR_SUCESOR 
-			hasta SOLUCION_ENCONTRADA o FALLO
-		
-		
-						Aade nodo inicial a ABIERTOS
-				2. SI ABIERTOS no contiene nodos:
-				a. Finaliza habiendo comprobado todas las posibilidades.
-				3. Sino:
-				a. Extrae el nodo con ms puntuacin en ABIERTOS.
+		while(!CaminoEncontrado && !LimiteTiempo){
+			
+			if(Abiertos.isEmpty()){
+				CaminoEncontrado = true;
+			}else{
+				Casilla Mejor = Abiertos.get(0);
+				for(Casilla Temp : Abiertos){
+				   if(Temp.Coste > Mejor.Coste){
+				      Mejor = Temp; 
+				   }
+				}
 				
-				b. Si el tiempo maximo ha expirado:
-					i. Finaliza habiendo comprobado parcialmente las posibilidades. c. Sino:
-					i. Genera los sucesores del nodo extrado.
-					ii. Para cada sucesor:
-				1. Si est en CERRADOS: a. No hacer nada.
-				2. Si no, si no est en ABIERTOS: a. Insertar en ABIERTOS.
-				3. Si no, si est en ABIERTOS y es mejor: a. Actualizar nodo en ABIERTOS.
-				4. Volver al punto 2.
-		*/
-	//	Abiertos.add(Casilla.get(0));
-		if(Abiertos.isEmpty()){
-			//Finaliza habiendo comprobado todas las posibilidades
-		}else{
-			Casilla Mejor = Abiertos.get(0);
-			for(Casilla Temp : Abiertos){
-			   if(Temp.Coste > Mejor.Coste){
-			      Mejor = Temp; 
-			   }
+				if(Mejor == Destino){
+					CaminoEncontrado = true;
+				}
+						
+				ArrayList<Casilla> Sucesores = GetSucesores(Mejor);
+				for(Casilla Suc : Sucesores){
+					if(Cerrados.contains(Suc)){
+						
+					}else if (!Abiertos.contains(Suc)){
+						Abiertos.add(Suc);		
+					}else if ( Abiertos.contains(Suc) && EsMejor(Suc, Abiertos)){
+						Abiertos.remove(Suc);
+						Cerrados.add(Suc);
+					}
+					
+				}			
+				
+					
 			}
-			
-			
-			
-			
+	   }	
+		
+	}
+	
+	static boolean EsMejor(Casilla Mejor, ArrayList<Casilla> Lista){
+		boolean EsMejor = false;
+		for(Casilla Temp : Lista){
+			   if(Mejor.Coste > Temp.Coste){
+			      EsMejor = true; 
+			   }
+		}
+		return EsMejor;		
+	}
+	
+	static ArrayList<Casilla> GetSucesores(Casilla Padre){
+		ArrayList<Casilla> Sucesores = new ArrayList<Casilla>();
+		int Alto = Padre.Alto;
+		int Ancho = Padre.Ancho;
+		
+		//Obtenemos la casilla vecina para los 8 extremos del hex‡gono
+		Sucesores.add(Padre.getHijo(Alto, Ancho-1, Tablero));
+		Sucesores.add(Padre.getHijo(Alto, Ancho+1, Tablero));
+		
+		Sucesores.add(Padre.getHijo(Alto-1, Ancho, Tablero));
+		Sucesores.add(Padre.getHijo(Alto+1, Ancho, Tablero));
+	
+		Sucesores.add(Padre.getHijo(Alto-1, Ancho-1, Tablero));
+		Sucesores.add(Padre.getHijo(Alto+1, Ancho-1, Tablero));
+		
+		Sucesores.add(Padre.getHijo(Alto-1, Ancho+1, Tablero));
+		Sucesores.add(Padre.getHijo(Alto+1, Ancho+1, Tablero));
+		
+		//Asignamos el padre a la casilla sucesora obtenida
+		for(Casilla Hijo: Sucesores){
+			//Si es una casilla vac’a (extremos del tablero) la eliminamos de los sucesores.
+			if(Hijo.vacia == true){ 
+				Sucesores.remove(Hijo);
+			}
+			Hijo.Padre = Padre;		
 		}
 		
 		
+		return Sucesores;
 	}
 }

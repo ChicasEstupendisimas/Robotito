@@ -24,9 +24,16 @@ public class Casilla extends Tablero {
 
 	//Para el c‡lculo de costes en la Fase de Movimiento (A*)
 	int Coste;
+	Casilla Padre;
+	boolean vacia;
 
+	Casilla(){
+		vacia = true; //Variable para comprobar que no es una casilla vac’a (Funci—n getHijo)
+	}
+	
 	static Casilla LeerCasilla(ArrayList<String> Leido){
 		Casilla temp = new Casilla();
+		temp.vacia = false;
 
 		temp.Nivel = Integer.parseInt(Leido.get(0));
 		temp.TipoTerreno = Integer.parseInt(Leido.get(1));
@@ -60,4 +67,18 @@ public class Casilla extends Tablero {
 		
 		return temp;
 	}
+	
+	public Casilla getHijo(int Ancho, int Alto, ArrayList<Casilla> Tablero){
+		Casilla Hijo = new Casilla();
+		
+		for(Casilla Temp:Tablero){
+			if(Temp.Ancho == Ancho && Temp.Alto == Alto){
+				Hijo = Temp;
+				break;
+			}
+		}
+		
+		return Hijo;
+	}
+	
 }

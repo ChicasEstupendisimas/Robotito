@@ -10,7 +10,8 @@ public class Mech {
 	boolean Desconectado;
 	boolean Atascado;
 	boolean EnSuelo;
-	String PosicionHex; //Por ahora
+	static Casilla Casilla;
+	static String PosicionHex; //Por ahora
 	int Encaramiento;
 	int EncaramientoTorso;
 	int Temperatura;
@@ -45,7 +46,7 @@ public class Mech {
 
 	Mech(){}
 	
-	static Mech LeerMech(ArrayList<String> Leido, int Activo, int NumJugadores ){
+	static Mech LeerMech(ArrayList<String> Leido, int Activo, int NumJugadores, ArrayList<Casilla> Tablero){
 		
 		Mech relleno = new Mech();
 		//System.out.print("\n\n Inicio mech  \n\n");
@@ -124,7 +125,7 @@ public class Mech {
 		}
 		*/
 	
-		
+		relleno.AddCasilla(Tablero);
 
 		
 		return relleno;
@@ -186,6 +187,30 @@ public class Mech {
 		for(Municion d :relleno.Municiones)
 			System.out.print("\n0 " + d);
 		*/
+	}
+	
+	static void AddCasilla(ArrayList<Casilla> Tablero){
+		
+		String SAncho = PosicionHex.substring(0, 2);
+		String SAlto = PosicionHex.substring(2, 4);
+		
+		int Alto =  Integer.parseInt(SAlto);
+		int Ancho = Integer.parseInt(SAncho);
+		
+		/*
+		System.out.println("\nCoordenadas iniciales: "+PosicionHex);
+		System.out.println("\nSubstrings: "+SAlto+" "+SAncho);
+		System.out.println("\nAncho: "+Ancho+" Alto:"+Alto);
+		*/
+		
+		for(Casilla Temp:Tablero){
+			if(Temp.Alto == Alto && Temp.Ancho == Ancho){
+				Casilla = Temp;
+				break;
+			}
+		}
+		
+		
 	}
 
 }

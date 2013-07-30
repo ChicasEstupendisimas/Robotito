@@ -67,7 +67,7 @@ public class BattleTech {
 			//TODO: entrar a las fases y todo eso
 			if(fase_Ana == Fase_Mov || fase_Mary == Fase_Mov){
 				FaseMovimiento movimiento = new FaseMovimiento();
-				ArrayEscritura = movimiento.IniciaFaseMovimiento(mech, enemigos);	
+				ArrayEscritura = movimiento.IniciaFaseMovimiento(mech, enemigos, mapa.Casillas);	
 			}
 			if(fase_Ana == Fase_AA || fase_Mary == Fase_AA){
 				FaseAtaqueArmas ataquearmas = new FaseAtaqueArmas();
@@ -103,7 +103,7 @@ public class BattleTech {
 	
 		System.out.print("\nJUGADOR ACTIVO: "+ Jugador);
 		for(int i=0; i<NumMechs; i++){
-			Mech temp = Mech.LeerMech(lectura_mechs, Jugador, NumMechs);;
+			Mech temp = Mech.LeerMech(lectura_mechs, Jugador, NumMechs, mapa.Casillas);
 
 			if(temp.NumJugador == Jugador){
 				mech = temp;
