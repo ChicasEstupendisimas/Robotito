@@ -107,8 +107,10 @@ public class BattleTech {
 
 			if(temp.NumJugador == Jugador){
 				mech = temp;
+				System.out.print("\nActivo: "+mech.CasillaPos.Alto + " "+mech.CasillaPos.Ancho);
 			}else{
 				enemigos.add(temp);
+				System.out.print("\nEnemigo: "+temp.CasillaPos.Alto + " "+temp.CasillaPos.Ancho);
 			}
 		}
 		

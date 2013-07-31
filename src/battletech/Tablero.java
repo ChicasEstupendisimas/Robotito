@@ -24,8 +24,8 @@ public class Tablero {
 		for(int i=1; i<=Ancho ; i++){
 			for(int j=1; j<=Alto; j++){	
 				Casilla temp = Casilla.LeerCasilla(Leido);
-				temp.fila = j;
-				temp.colum = i;
+				temp.Ancho = j;
+				temp.Alto = i;
 				Casillas.add(temp);
 			//	System.out.println("\nFila:"+temp.fila+" "+temp.colum);
 			}
