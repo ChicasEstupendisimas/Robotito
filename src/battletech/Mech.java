@@ -2,8 +2,6 @@ package battletech;
 
 import java.util.ArrayList;
 
-import sun.tools.tree.ThisExpression;
-
 public class Mech {
 
 	//Atributos generales
