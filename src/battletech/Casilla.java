@@ -11,9 +11,9 @@ public class Casilla extends Tablero {
 	int Alto;
 	int Ancho;
 	
-	static int Nivel;
-	static int TipoTerreno;
-	static int Objeto;
+	int Nivel;
+	int TipoTerreno;
+	int Objeto;
 	int FCEEdificio;
 	boolean EdificioDown;
 	boolean Fuego;
@@ -24,18 +24,18 @@ public class Casilla extends Tablero {
 	boolean[] CarreteraCaras = new boolean[6];
 
 	//Para el c‡lculo de costes en la Fase de Movimiento (A*)
-	static int CosteH;
-	static int CosteG;
-	static int CosteTotal;
-	static int CosteDesnivel;
-	static int CosteEncaramiento;
-	static int EncaramientoCasilla;
-	static boolean ocupada;
+	int CosteH;
+	int CosteG;
+	int CosteTotal;
+	int CosteDesnivel;
+	int CosteEncaramiento;
+	int EncaramientoCasilla;
+	boolean ocupada;
 	
 	Casilla Padre;
 	boolean vacia;
-	static boolean accesible;
-	static boolean NeedChequeo;
+	boolean accesible;
+	boolean NeedChequeo;
 
 	Casilla(){
 		Alto = 0;
@@ -44,7 +44,7 @@ public class Casilla extends Tablero {
 	}
 	
 	@SuppressWarnings("static-access")
-	static Casilla LeerCasilla(ArrayList<String> Leido){
+	Casilla LeerCasilla(ArrayList<String> Leido){
 		Casilla temp = new Casilla();
 		temp.vacia = false;
 		temp.NeedChequeo = false;
@@ -108,47 +108,47 @@ public class Casilla extends Tablero {
 	 * Funci—n que establece los costes est‡ticos de las casillas
 	 * (Por tipo de terreno, objeto, profundidad, etc.)
 	 */
-	private static void ProcesaCasilla(){
-		switch(TipoTerreno){
+	private void ProcesaCasilla(){
+		switch(this.TipoTerreno){
 			case 0: //Terreno abierto +1PM
-				CosteH++;
+				this.CosteH++;
 			break;
 			case 1: //Terreno pavimentado +1PM
-				CosteH++;
+				this.CosteH++;
 			break;
 			case 2: //Terreno con agua
-				switch(Nivel){
+				switch(this.Nivel){
 					case 0:
-						CosteH++;
+						this.CosteH++;
 					break;
 					case -1:
-						NeedChequeo = true;
-						CosteH=CosteH+2;
+						this.NeedChequeo = true;
+						this.CosteH=CosteH+2;
 					break;
 					case -2:
-						NeedChequeo = true;
-						CosteH=CosteH+4;
+						this.NeedChequeo = true;
+						this.CosteH=CosteH+4;
 					break;
 				}
 			break;
 			case 3: //Terreno pantanoso +2PM
-				NeedChequeo = true;
-				CosteH=CosteH+2;
+				this.NeedChequeo = true;
+				this.CosteH=CosteH+2;
 			break;
 		}
 		
 		switch(Objeto){
 			case 1://Bosque Disperso +2PM
-				CosteH=CosteH+2;
+				this.CosteH=CosteH+2;
 			break;
 			case 2://Bosque Denso +3PM
-				CosteH=CosteH+3;
+				this.CosteH=CosteH+3;
 			break;
 			case 255: //Terreno sin objeto
 				
 			break;
 			default:
-				accesible = false;
+				this.accesible = false;
 			break;
 			
 			
@@ -162,17 +162,17 @@ public class Casilla extends Tablero {
 	 * @param Padre
 	 */
 	@SuppressWarnings("static-access")
-	static void CalculaDesnivel(Casilla Hijo, Casilla Padre){
+	void CalculaDesnivel(Casilla Hijo, Casilla Padre){
 		int desnivel = Hijo.Nivel - Padre.Nivel;
 		
 		if(desnivel == -1 || desnivel == 1){
 			Hijo.CosteDesnivel++;
 		}
 		if(desnivel == -2 || desnivel == 2){
-			Hijo.CosteDesnivel = CosteDesnivel +2;
+			Hijo.CosteDesnivel = this.CosteDesnivel +2;
 		}
 		else{
-			Hijo.CosteDesnivel = CosteDesnivel + 100;
+			Hijo.CosteDesnivel = this.CosteDesnivel + 100;
 			Hijo.accesible = false;
 		}	
 	}

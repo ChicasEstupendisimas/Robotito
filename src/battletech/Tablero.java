@@ -23,7 +23,8 @@ public class Tablero {
 
 		for(int i=1; i<=AnchoT ; i++){
 			for(int j=1; j<=AltoT; j++){	
-				Casilla temp = Casilla.LeerCasilla(Leido);
+				Casilla temp = new Casilla();
+				temp.LeerCasilla(Leido);
 				temp.Ancho = j;
 				temp.Alto = i;
 				Casillas.add(temp);

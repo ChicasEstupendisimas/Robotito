@@ -34,21 +34,21 @@ public class Configuracion {
 	 * Lectura del archivo de configuraci—n
 	 */
 	void LeerConfiguracion(ArrayList<String> leido){
-		IncendiosPermitidos = Boolean.parseBoolean(leido.get(1));
-		Viento  = Boolean.parseBoolean(leido.get(2));
-		DireccionViento = Integer.parseInt(leido.get(3));
-		AtaquesFisicos = Boolean.parseBoolean(leido.get(4));
-		FaseCalor = Boolean.parseBoolean(leido.get(5));
-		DevastarBosques = Boolean.parseBoolean(leido.get(6));
-		DerrumbarEdificios= Boolean.parseBoolean(leido.get(7));
-		ChequeoPilotaje = Boolean.parseBoolean(leido.get(8));
-		ChequeoDato = Boolean.parseBoolean(leido.get(9));
-		ChequeoDesconexion= Boolean.parseBoolean(leido.get(10));
-		ImpactoCritico = Boolean.parseBoolean(leido.get(11));
-		ExplosionMunicion = Boolean.parseBoolean(leido.get(12));
-		ApagarRadiadores = Boolean.parseBoolean(leido.get(13));
-		LimTiempoRespuesta = Boolean.parseBoolean(leido.get(14));
-		LimiteTiempo = Integer.parseInt(leido.get(15));
+		this.IncendiosPermitidos = Boolean.parseBoolean(leido.get(1));
+		this.Viento  = Boolean.parseBoolean(leido.get(2));
+		this.DireccionViento = Integer.parseInt(leido.get(3));
+		this.AtaquesFisicos = Boolean.parseBoolean(leido.get(4));
+		this.FaseCalor = Boolean.parseBoolean(leido.get(5));
+		this.DevastarBosques = Boolean.parseBoolean(leido.get(6));
+		this.DerrumbarEdificios= Boolean.parseBoolean(leido.get(7));
+		this.ChequeoPilotaje = Boolean.parseBoolean(leido.get(8));
+		this.ChequeoDato = Boolean.parseBoolean(leido.get(9));
+		this.ChequeoDesconexion= Boolean.parseBoolean(leido.get(10));
+		this.ImpactoCritico = Boolean.parseBoolean(leido.get(11));
+		this.ExplosionMunicion = Boolean.parseBoolean(leido.get(12));
+		this.ApagarRadiadores = Boolean.parseBoolean(leido.get(13));
+		this.LimTiempoRespuesta = Boolean.parseBoolean(leido.get(14));
+		this.LimiteTiempo = Integer.parseInt(leido.get(15));
 
 		
 		/* TODO: eliminar esto

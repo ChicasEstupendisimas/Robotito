@@ -6,14 +6,14 @@ public class FaseMovimiento {
 	
 	
 
-	static Casilla Destino;
-	static Casilla Inicial;
-	static ArrayList<Casilla> Tablero = new ArrayList<Casilla>();
-	static Mech Enemigo = new Mech();
-	static Mech Activo = new Mech();
-	static int[] Costes;
-	static int PuntDesnivel;
-	static ArrayList<Casilla> Cerrados = new ArrayList<Casilla>();
+	Casilla Destino;
+	Casilla Inicial;
+	ArrayList<Casilla> Tablero = new ArrayList<Casilla>();
+	Mech Enemigo = new Mech();
+	Mech Activo = new Mech();
+	int[] Costes;
+	int PuntDesnivel;
+	ArrayList<Casilla> Cerrados = new ArrayList<Casilla>();
 
 
 	
@@ -25,8 +25,8 @@ public class FaseMovimiento {
 				
 		*/
 		
-		FaseMovimiento.Tablero = Tablero;
-		FaseMovimiento.Activo = Yo;
+		this.Tablero = Tablero;
+		this.Activo = Yo;
 		Enemigo = EscogeEnemigo(Enemigos);
 		
 		Inicial = Activo.CasillaPos;
@@ -73,7 +73,7 @@ public class FaseMovimiento {
 	/*
 	 * Funci—n para escoger el mech Enemigo id—neo
 	 */
-	static Mech EscogeEnemigo(ArrayList<Mech> Enemigos){
+	Mech EscogeEnemigo(ArrayList<Mech> Enemigos){
 		Mech EnemigoMech = new Mech();
 		/*	
 		int i=0;
@@ -91,14 +91,14 @@ public class FaseMovimiento {
 	/*
 	 * Funci—n para calcular los costes del enemigo actual
 	 */
-	static int CalculaCostes(Mech Enemigo){
+	int CalculaCostes(Mech Enemigo){
 		return 0;	
 	}
 	
 	/*
 	 * Funci—n que selecciona el objetivo a atacar
 	 */
-	static void SelectObjetivo(){
+	void SelectObjetivo(){
 		
 	}
 
@@ -106,7 +106,7 @@ public class FaseMovimiento {
 	 * Funci—n base del algoritmo A*
 	 */
 	@SuppressWarnings("static-access")
-	static void AlgoritmoA(){
+	void AlgoritmoA(){
 
 		ArrayList<Casilla> Abiertos = new ArrayList<Casilla>();
 		
@@ -153,7 +153,7 @@ public class FaseMovimiento {
 	}
 	
 	@SuppressWarnings("static-access")
-	static boolean EsMejor(Casilla Mejor, ArrayList<Casilla> Lista){
+	boolean EsMejor(Casilla Mejor, ArrayList<Casilla> Lista){
 		boolean EsMejor = false;
 		for(Casilla Temp : Lista){
 			   if(Mejor.CosteTotal < Temp.CosteTotal){
@@ -164,7 +164,7 @@ public class FaseMovimiento {
 	}
 	
 	@SuppressWarnings("static-access")
-	static ArrayList<Casilla> GetSucesores(Casilla Padre){
+	ArrayList<Casilla> GetSucesores(Casilla Padre){
 		ArrayList<Casilla> Sucesores = new ArrayList<Casilla>();
 		int Alto = Padre.Alto;
 		int Ancho = Padre.Ancho;
@@ -210,7 +210,7 @@ public class FaseMovimiento {
 	}
 	
 	@SuppressWarnings("static-access")
-	static void CalculaCostes(Casilla Cas){
+	void CalculaCostes(Casilla Cas){
 		int CosteEncaramiento = Cas.EncaramientoCasilla - Activo.Encaramiento;
 		if(CosteEncaramiento <0) CosteEncaramiento = -CosteEncaramiento;
 		

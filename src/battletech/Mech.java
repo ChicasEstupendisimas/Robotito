@@ -5,74 +5,73 @@ import java.util.ArrayList;
 public class Mech {
 
 	//Atributos generales
-	static int NumJugador;
-	static boolean Operativo;
-	static boolean Desconectado;
-	static boolean Atascado;
-	static boolean EnSuelo;
-	static public Casilla CasillaPos = new Casilla();
-	static String PosicionHex; //Por ahora
-	static int Encaramiento;
-	static int EncaramientoTorso;
-	static int Temperatura;
-	static boolean Ardiendo;
-	static boolean Garrote;
-	static int TipoGarrote;
+	int NumJugador;
+	boolean Operativo;
+	boolean Desconectado;
+	boolean Atascado;
+	boolean EnSuelo;
+	public Casilla CasillaPos = new Casilla();
+	String PosicionHex; //Por ahora
+	int Encaramiento;
+	int EncaramientoTorso;
+	int Temperatura;
+	boolean Ardiendo;
+	boolean Garrote;
+	int TipoGarrote;
 	
-	static int[] Blindaje = new int[11];
-	static int [] EstructuraInterna = new int[8];
+	int[] Blindaje = new int[11];
+	int [] EstructuraInterna = new int[8];
 	
-	static boolean[] Narc;
-	static boolean[] iNarc;
+	boolean[] Narc;
+	boolean[] iNarc;
 	
 
 	
 	
 	//Atributos s—lo para el jugador activo
-	static int PAndar;
-	static int PCorrer;
-	static int PSaltar;
-	static int RadiadoresOn;
-	static int RadiadoresOff;
-	static int Heridas;
-	static boolean Consciente;
-	static boolean[] Slots = new boolean[78];
-	static boolean []LocDisparos = new boolean[8];
-	static int NumMuniciones;
-	static ArrayList<Municion> Municiones = new ArrayList<Municion>();
-	
-	
+	int PAndar;
+	int PCorrer;
+	int PSaltar;
+	int RadiadoresOn;
+	int RadiadoresOff;
+	int Heridas;
+	boolean Consciente;
+	boolean[] Slots = new boolean[78];
+	boolean []LocDisparos = new boolean[8];
+	int NumMuniciones;
+	ArrayList<Municion> Municiones = new ArrayList<Municion>();
 	
 
 	Mech(){
+		NumJugador = -1;
 		CasillaPos = new Casilla();
 		PosicionHex = "";
 		
 	}
 	
 	@SuppressWarnings("static-access")
-	static void LeerMech(ArrayList<String> Leido, int Activo, int NumJugadores, ArrayList<Casilla> Tablero){
+	Mech(ArrayList<String> Leido, int Activo, int NumJugadores, ArrayList<Casilla> Tablero){
 		
 	//	Mech relleno = new Mech();
 		//System.out.print("\n\n Inicio mech  \n\n");
-		NumJugador = Integer.parseInt(Leido.get(0));
-		Operativo = Boolean.parseBoolean(Leido.get(1));
-		Desconectado = Boolean.parseBoolean(Leido.get(2));
-		Atascado = Boolean.parseBoolean(Leido.get(3));
-		EnSuelo = Boolean.parseBoolean(Leido.get(4));
-		PosicionHex = Leido.get(5);
-		Encaramiento = Integer.parseInt(Leido.get(6));
-		EncaramientoTorso = Integer.parseInt(Leido.get(7));
-		Temperatura = Integer.parseInt(Leido.get(8));
-		Ardiendo = Boolean.parseBoolean(Leido.get(9));
-		Garrote = Boolean.parseBoolean(Leido.get(10));
-		TipoGarrote = Integer.parseInt(Leido.get(11));
+		this.NumJugador = Integer.parseInt(Leido.get(0));
+		this.Operativo = Boolean.parseBoolean(Leido.get(1));
+		this.Desconectado = Boolean.parseBoolean(Leido.get(2));
+		this.Atascado = Boolean.parseBoolean(Leido.get(3));
+		this.EnSuelo = Boolean.parseBoolean(Leido.get(4));
+		this.PosicionHex = Leido.get(5);
+		this.Encaramiento = Integer.parseInt(Leido.get(6));
+		this.EncaramientoTorso = Integer.parseInt(Leido.get(7));
+		this.Temperatura = Integer.parseInt(Leido.get(8));
+		this.Ardiendo = Boolean.parseBoolean(Leido.get(9));
+		this.Garrote = Boolean.parseBoolean(Leido.get(10));
+		this.TipoGarrote = Integer.parseInt(Leido.get(11));
 		
 		for(int i=0; i<11; i++){
-			Blindaje[i] = Integer.parseInt(Leido.get(i+12));
+			this.Blindaje[i] = Integer.parseInt(Leido.get(i+12));
 		}
 		for(int i=0; i<8;i++){
-			EstructuraInterna[i] = Integer.parseInt(Leido.get(i+23));
+			this.EstructuraInterna[i] = Integer.parseInt(Leido.get(i+23));
 		} 
 		
 		for(int i=0; i<31; i++){
@@ -102,19 +101,19 @@ public class Mech {
 		}
 		*/
 		
-		if(NumJugador == Activo){
+		if(this.NumJugador == Activo){
 			LeerMechActivo(Leido);	
 		}
 		
-		Narc = new boolean[NumJugadores];
-		iNarc = new boolean[NumJugadores];
+		this.Narc = new boolean[NumJugadores];
+		this.iNarc = new boolean[NumJugadores];
 		
 		for(int i=0; i<NumJugadores*2; i++){
 			
 			if(i<NumJugadores){
-				Narc[i] = Boolean.parseBoolean(Leido.get(i)); 
+				this.Narc[i] = Boolean.parseBoolean(Leido.get(i)); 
 			}else{
-				iNarc[i-NumJugadores] = Boolean.parseBoolean(Leido.get(i));
+				this.iNarc[i-NumJugadores] = Boolean.parseBoolean(Leido.get(i));
 			}		
 		}
 		
@@ -130,7 +129,7 @@ public class Mech {
 		}
 		*/
 	
-		CasillaPos = AddCasilla(Tablero);
+		this.CasillaPos = AddCasilla(Tablero);
 		
 	//	System.out.print("\n\n--RELLENO " +relleno.CasillaPos.Alto + "  ---"+relleno.CasillaPos.Ancho);
 
@@ -139,23 +138,23 @@ public class Mech {
 	}
 	
 	
-	static void LeerMechActivo(ArrayList<String> Leido){
+	void LeerMechActivo(ArrayList<String> Leido){
 		
 		int elementos=0;
 		
-		PAndar = Integer.parseInt(Leido.get(0));
-		PCorrer = Integer.parseInt(Leido.get(1));
-		PSaltar = Integer.parseInt(Leido.get(2));
-		RadiadoresOn = Integer.parseInt(Leido.get(3));
-		RadiadoresOff = Integer.parseInt(Leido.get(4));
-		Heridas = Integer.parseInt(Leido.get(5));
-		Consciente = Boolean.parseBoolean(Leido.get(6));
+		this.PAndar = Integer.parseInt(Leido.get(0));
+		this.PCorrer = Integer.parseInt(Leido.get(1));
+		this.PSaltar = Integer.parseInt(Leido.get(2));
+		this.RadiadoresOn = Integer.parseInt(Leido.get(3));
+		this.RadiadoresOff = Integer.parseInt(Leido.get(4));
+		this.Heridas = Integer.parseInt(Leido.get(5));
+		this.Consciente = Boolean.parseBoolean(Leido.get(6));
 		
 		for(int i=0; i<78; i++){
-			Slots[i] = Boolean.parseBoolean(Leido.get(7+i));
+			this.Slots[i] = Boolean.parseBoolean(Leido.get(7+i));
 		}
 		for(int i=0; i<8; i++){
-			LocDisparos[i] = Boolean.parseBoolean(Leido.get(85+i));
+			this.LocDisparos[i] = Boolean.parseBoolean(Leido.get(85+i));
 		}
 		
 		NumMuniciones = Integer.parseInt(Leido.get(93));
@@ -197,10 +196,10 @@ public class Mech {
 	}
 	
 	@SuppressWarnings("static-access")
-	static Casilla AddCasilla(ArrayList<Casilla> Tablero){
+	Casilla AddCasilla(ArrayList<Casilla> Tablero){
 		
-		String SAncho = PosicionHex.substring(0, 2);
-		String SAlto = PosicionHex.substring(2, 4);
+		String SAncho = this.PosicionHex.substring(0, 2);
+		String SAlto = this.PosicionHex.substring(2, 4);
 		
 		int FAlto =  Integer.parseInt(SAlto);
 		int FAncho = Integer.parseInt(SAncho);
