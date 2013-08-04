@@ -15,8 +15,6 @@ import java.util.ArrayList;
  * 
  */
 
-
-
 public class BattleTech {
 
 	//Objetos del programa
@@ -68,7 +66,7 @@ public class BattleTech {
 			//TODO: entrar a las fases y todo eso
 			if(fase_Ana == Fase_Mov || fase_Mary == Fase_Mov){
 				//FaseMovimiento movimiento = new FaseMovimiento();
-				//ArrayEscritura = movimiento.IniciaFaseMovimiento(mech, enemigos, mapa.Casillas);
+				//ArrayEscritura = movimiento.IniciaFaseMovimiento(mechOn, enemigos, mapa.Casillas);
 				
 				//System.out.println("Amos a ver: "+enemigos.get(0).CasillaPos.Ancho);
 			}
@@ -105,47 +103,28 @@ public class BattleTech {
 		lectura_mechs.remove(0);
 		lectura_mechs.remove(0);
 	
-		ArrayList<Mech> mechs  = new ArrayList<Mech>();
-	//	Mech temp[] = new Mech[NumMechs];
-		//mechOn = new Mech();
-		System.out.println("\n1.Mech Activo: "+mechOn.CasillaPos.Alto + mechOn.CasillaPos.Ancho);
-		
-		
-		  for(int i=0; i<NumMechs-1; i++){
+		  for(int i=0; i<NumMechs; i++){
 		 
 		//	System.out.print("\nJUGADOR ACTIVO: "+ Jugador);			
 			Mech temp = new Mech();
-			Mech prueba = new Mech();
-			
-			temp.LeerMech(lectura_mechs, Jugador, NumMechs, mapa.Casillas);
-			System.out.print("\nPrueba: "+ prueba.PosicionHex+"\n");
-			
-			
-			//mechs.add(temp);
-			//mechact= new Mech();
-		//	mechs.
-			//System.out.print("\nNum jugador: "+temp[i].NumJugador+"\n");
-			
-		/*	if(temp.NumJugador == Jugador){
-				System.out.println("\nActivo");
-				System.out.println("Coords: "+temp.CasillaPos.Alto+" , "+temp.CasillaPos.Ancho);
+			temp = new Mech(lectura_mechs, Jugador, NumMechs, mapa.Casillas);
+				
+			if(temp.NumJugador == Jugador){
+				//System.out.println("\nActivo");
+				//System.out.println("Coords: "+temp.CasillaPos.Alto+" , "+temp.CasillaPos.Ancho);
 				mechOn = temp;
 					
 			}else{
-				System.out.println("\nEnemigo");
-				System.out.println("Coords: "+temp.CasillaPos.Alto+" , "+temp.CasillaPos.Ancho);
-				Mech afus = temp;
-				enemigos.add(afus);
-				//temp = new Mech();
+				//System.out.println("\nEnemigo");
+				//System.out.println("Coords: "+temp.CasillaPos.Alto+" , "+temp.CasillaPos.Ancho);
+				enemigos.add(temp);
 				
-			}*/
+			}
 			//System.out.print("\nCOORDS EN ENEMIGO: "+enemigos.get(0).CasillaPos.Alto + " "+enemigos.get(0).CasillaPos.Ancho);
 		}
-		//mechOn = new Mech();
-		
-		System.out.println("\nMech Activo: "+mechOn.CasillaPos.Alto + mechOn.CasillaPos.Ancho);
-		
-		
+
+		//System.out.println("\nMech Activo: "+mechOn.CasillaPos.Alto + mechOn.CasillaPos.Ancho);
+			
 		
 	}
 	
