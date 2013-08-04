@@ -21,7 +21,7 @@ public class BattleTech {
 
 	//Objetos del programa
 	private static Configuracion config = new Configuracion();
-	private static Mech mech = new Mech();
+	private static Mech mechOn = new Mech();
 	private static ArrayList<Mech> enemigos = new ArrayList<Mech>();
 	private static Tablero mapa = new Tablero();
 
@@ -62,12 +62,15 @@ public class BattleTech {
 			
 			
 		      ArrayList<String> ArrayEscritura = new ArrayList<String>();
-			
+		      
+		    //  System.out.print("\nEnemigos 0: " + enemigos.get(0).CasillaPos.Alto + " ancho:" + enemigos.get(0).CasillaPos.Ancho);
 			
 			//TODO: entrar a las fases y todo eso
 			if(fase_Ana == Fase_Mov || fase_Mary == Fase_Mov){
-				FaseMovimiento movimiento = new FaseMovimiento();
-				ArrayEscritura = movimiento.IniciaFaseMovimiento(mech, enemigos, mapa.Casillas);	
+				//FaseMovimiento movimiento = new FaseMovimiento();
+				//ArrayEscritura = movimiento.IniciaFaseMovimiento(mech, enemigos, mapa.Casillas);
+				
+				//System.out.println("Amos a ver: "+enemigos.get(0).CasillaPos.Ancho);
 			}
 			if(fase_Ana == Fase_AA || fase_Mary == Fase_AA){
 				FaseAtaqueArmas ataquearmas = new FaseAtaqueArmas();
@@ -80,6 +83,7 @@ public class BattleTech {
 	
 	}
 	
+	@SuppressWarnings("static-access")
 	private static void LeerFicheros(){
 		
 		
@@ -101,18 +105,47 @@ public class BattleTech {
 		lectura_mechs.remove(0);
 		lectura_mechs.remove(0);
 	
-		System.out.print("\nJUGADOR ACTIVO: "+ Jugador);
-		for(int i=0; i<NumMechs; i++){
-			Mech temp = Mech.LeerMech(lectura_mechs, Jugador, NumMechs, mapa.Casillas);
-
-			if(temp.NumJugador == Jugador){
-				mech = temp;
-				System.out.print("\nActivo: "+mech.CasillaPos.Alto + " "+mech.CasillaPos.Ancho);
+		ArrayList<Mech> mechs  = new ArrayList<Mech>();
+	//	Mech temp[] = new Mech[NumMechs];
+		//mechOn = new Mech();
+		System.out.println("\n1.Mech Activo: "+mechOn.CasillaPos.Alto + mechOn.CasillaPos.Ancho);
+		
+		
+		  for(int i=0; i<NumMechs-1; i++){
+		 
+		//	System.out.print("\nJUGADOR ACTIVO: "+ Jugador);			
+			Mech temp = new Mech();
+			Mech prueba = new Mech();
+			
+			temp.LeerMech(lectura_mechs, Jugador, NumMechs, mapa.Casillas);
+			System.out.print("\nPrueba: "+ prueba.PosicionHex+"\n");
+			
+			
+			//mechs.add(temp);
+			//mechact= new Mech();
+		//	mechs.
+			//System.out.print("\nNum jugador: "+temp[i].NumJugador+"\n");
+			
+		/*	if(temp.NumJugador == Jugador){
+				System.out.println("\nActivo");
+				System.out.println("Coords: "+temp.CasillaPos.Alto+" , "+temp.CasillaPos.Ancho);
+				mechOn = temp;
+					
 			}else{
-				enemigos.add(temp);
-				System.out.print("\nEnemigo: "+temp.CasillaPos.Alto + " "+temp.CasillaPos.Ancho);
-			}
+				System.out.println("\nEnemigo");
+				System.out.println("Coords: "+temp.CasillaPos.Alto+" , "+temp.CasillaPos.Ancho);
+				Mech afus = temp;
+				enemigos.add(afus);
+				//temp = new Mech();
+				
+			}*/
+			//System.out.print("\nCOORDS EN ENEMIGO: "+enemigos.get(0).CasillaPos.Alto + " "+enemigos.get(0).CasillaPos.Ancho);
 		}
+		//mechOn = new Mech();
+		
+		System.out.println("\nMech Activo: "+mechOn.CasillaPos.Alto + mechOn.CasillaPos.Ancho);
+		
+		
 		
 	}
 	

@@ -32,13 +32,14 @@ public class FaseMovimiento {
 		Inicial = Activo.CasillaPos;
 		Destino = Enemigo.CasillaPos;
 		
-		AlgoritmoA();
-		System.out.print("\nPosicion Mech Activo, Alto "+Inicial.Alto +" ancho: "+Inicial.Ancho );
-		System.out.print("\nPosicion Enemigo, Alto "+Enemigo.CasillaPos.Alto +" ancho: "+Enemigo.CasillaPos.Ancho );
 		
-		System.out.print("\n\nCamino Elegido");
+		System.out.print("\nPosicion Mech Activo, Alto "+Inicial.Alto +" ancho: "+Inicial.Ancho );
+		System.out.print("\nCasilla Destino: "+Enemigo.CasillaPos.Alto +" ancho: "+Enemigo.CasillaPos.Ancho );
+		
+		AlgoritmoA();
+		//System.out.print("\n\nCamino Elegido");
 		for(Casilla Cas:Cerrados){	
-			System.out.print("\nAlto: "+Cas.Alto+" Ancho: "+Cas.Ancho);
+			//System.out.print("\nAlto: "+Cas.Alto+" Ancho: "+Cas.Ancho);
 			
 		}
 	//	
@@ -65,9 +66,9 @@ public class FaseMovimiento {
 		 */
 		
 		
-		return null;
-		
+		return null;	
 	}
+	
 	
 	/*
 	 * Funci—n para escoger el mech Enemigo id—neo

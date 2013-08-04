@@ -8,6 +8,9 @@ public class Casilla extends Tablero {
 	int fila;
 	int index;
 	
+	int Alto;
+	int Ancho;
+	
 	static int Nivel;
 	static int TipoTerreno;
 	static int Objeto;
@@ -35,6 +38,8 @@ public class Casilla extends Tablero {
 	static boolean NeedChequeo;
 
 	Casilla(){
+		Alto = 0;
+		Ancho = 0;
 		vacia = true; //Variable para comprobar que no es una casilla vac’a (Funci—n getHijo)
 	}
 	
