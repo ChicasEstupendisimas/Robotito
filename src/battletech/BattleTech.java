@@ -72,7 +72,7 @@ public class BattleTech {
 			}
 			if(fase_Ana == Fase_AA || fase_Mary == Fase_AA){
 				FaseAtaqueArmas ataquearmas = new FaseAtaqueArmas();
-				ArrayEscritura = ataquearmas.IniciaFaseAtaqueArmas();	
+				//ArrayEscritura = ataquearmas.IniciaFaseAtaqueArmas(Jugador);	
 			}
 			
 			
