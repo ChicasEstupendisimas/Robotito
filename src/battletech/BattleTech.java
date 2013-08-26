@@ -65,10 +65,9 @@ public class BattleTech {
 			
 			//TODO: entrar a las fases y todo eso
 			if(fase_Ana == Fase_Mov || fase_Mary == Fase_Mov){
-				//FaseMovimiento movimiento = new FaseMovimiento();
-				//ArrayEscritura = movimiento.IniciaFaseMovimiento(mechOn, enemigos, mapa.Casillas);
+				FaseMovimiento movimiento = new FaseMovimiento();
+				ArrayEscritura = movimiento.IniciaFaseMovimiento(mechOn, enemigos, mapa);
 				
-				//System.out.println("Amos a ver: "+enemigos.get(0).CasillaPos.Ancho);
 			}
 			if(fase_Ana == Fase_AA || fase_Mary == Fase_AA){
 				FaseAtaqueArmas ataquearmas = new FaseAtaqueArmas();

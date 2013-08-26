@@ -41,11 +41,20 @@ public class Mech {
 	int NumMuniciones;
 	ArrayList<Municion> Municiones = new ArrayList<Municion>();
 	
+	//Valores para la actitud del mech
+	EnumActitud Actitud;
+	float Puntos;
+	float DistanciaOptima;
+
+	
 
 	Mech(){
-		NumJugador = -1;
-		CasillaPos = new Casilla();
-		PosicionHex = "";
+		this.NumJugador = -1;
+		this.CasillaPos = new Casilla();
+		this.PosicionHex = "";
+		this.Puntos = 0;
+		this.Actitud = Actitud.Equilibrada;
+		this.DistanciaOptima = 0;
 		
 	}
 	
@@ -130,6 +139,7 @@ public class Mech {
 		*/
 	
 		this.CasillaPos = AddCasilla(Tablero);
+		this.DistanciaOptima();
 		
 	//	System.out.print("\n\n--RELLENO " +relleno.CasillaPos.Alto + "  ---"+relleno.CasillaPos.Ancho);
 
@@ -222,6 +232,57 @@ public class Mech {
 		return Pos;
 	}
 
+	@SuppressWarnings("static-access")
+	public EnumActitud ObtActitud (Mech Enemigo){
+        
+		//C‡lculo de puntos del mech activo
+		for(int i=0; i<Blindaje.length; i++ ){
+			this.Puntos += Blindaje[i];	
+		}
+		for(int i=0; i<EstructuraInterna.length; i++ ){
+			this.Puntos += EstructuraInterna[i] * 1.25f;	
+		}
+        
+        // C‡lculo de puntos del enemigo
+		for(int i=0; i<Enemigo.Blindaje.length; i++ ){
+			Enemigo.Puntos += Enemigo.Blindaje[i];	
+		}
+		for(int i=0; i<Enemigo.EstructuraInterna.length; i++ ){
+			Enemigo.Puntos += Enemigo.EstructuraInterna[i] * 1.25f;	
+		}
+        
+		if(this.Puntos <= (Enemigo.Puntos*1.25f)){
+			this.Actitud = Actitud.Equilibrada;
+		}else if(this.Puntos <= (Enemigo.Puntos*0.75f)){
+			this.Actitud = Actitud.Defensiva;
+		}else if(this.Puntos <= (Enemigo.Puntos*1.75f)){
+			this.Actitud = Actitud.Ofensiva;
+		}else{		
+			this.Actitud = Actitud.MuyOfensiva;
+		}
+
+		return Actitud;
+	}
+	
+	 
+    public void DistanciaOptima(){
+    	float temp = 0;
+    	
+    	if(Municiones.size() == 0){
+    		this.DistanciaOptima = 0;
+    	}
+          
+    	for(Municion Mun:Municiones){
+    		temp += Mun.SlotMunicion;
+    	}
+    	
+    	this.DistanciaOptima = (float) temp / Municiones.size();
+    	if(this.DistanciaOptima == 0){
+    		this.DistanciaOptima = 0.1f;
+    	}
+          
+      }
+ 
 	
 }
 
